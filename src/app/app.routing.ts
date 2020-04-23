@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
+  
   {
     path: 'admin',
     component: AdminLayoutComponent,
@@ -21,7 +22,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'auth/login',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {

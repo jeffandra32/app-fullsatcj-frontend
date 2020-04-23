@@ -4,6 +4,13 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+img {
+  width: 180px;
+  padding-top: 15%;
+  margin-bottom: 20px;
+}
+
+
 .content {
   background-color: #fff;
   border-radius: 15px;
@@ -30,12 +37,6 @@ body {
   text-transform: capitalize;
 }
 
-.title-register {
-  font-size: 28px;
-  font-weight: bold;
-  text-transform: capitalize;
-  padding-top: 15%;
-}
 
 .title-primary {
   color: #fff;
@@ -158,6 +159,7 @@ input:-webkit-autofill {
   align-items: center;
   border-radius: 8px;
 }
+
 .icon-modify {
   color: #7f8c8d;
   padding: 0 5px;

@@ -12,7 +12,7 @@ export const environment = {
     timeOut: 3000,
   },
   hosts: {
-    local: 'localhost',
+    local: '/v1',
   },
 };
 

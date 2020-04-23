@@ -4,11 +4,12 @@ import { Routes } from '@angular/router';
 
 export const AuthLayoutRoutes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginComponent,
   },
+
   {
-    path: '/register',
+    path: 'register',
     component: RegisterComponent,
   },
 ];

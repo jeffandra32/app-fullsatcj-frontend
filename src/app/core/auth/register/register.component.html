@@ -1,67 +1,107 @@
-<p>register works!</p>
 <div class="header py-7 py-lg-8">
   <div class="separator separator-bottom separator-skew zindex-100"></div>
 </div>
 <!-- Page content -->
-<div class="container mt--8 pb-5">
+<div class="container mt--8 pb-4">
   <div class="row justify-content-center">
     <div class="content first-content">
       <div class="first-column">
         <h2 class="title title-primary">Bem vindo de volta!</h2>
-        <p class="description description-primary">Para continuar conectado</p>
-        <p class="description description-primary">
-          por favor entre com seus dados de autentiação.
-        </p>
-        <button id="signin" class="btn btn-primary">
+        <p class="description description-primary">Já possui uma conta?</p>
+        <span class="description description-primary">
+          Por favor entre com seus dados de autentiação.
+        </span>
+        <button
+          id="signin"
+          class="btn btn-primary"
+          [routerLink]="['/auth/login']"
+        >
           sign in
         </button>
       </div>
       <div class="second-column m-2">
-        <h5 class="title-register mt-3 mb-3">Não tem uma conta?</h5>
+        <img src="./../../../../assets/img/logo (3).png" alt="logo-full-stack-guide">
+
         <!-- social media -->
-        <form class="form" [formGroup]="loginForm">
-          <input
-            type="text"
-            name="username"
-            class="form-control mb-2"
-            placeholder="Usuário"
-          />
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <label class="label-input" for="">
+            <i class="far fa-user icon-modify"></i>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              autocomplete="off"
+              placeholder="Usuário"
+              formControlName="username"
+            />
+          </label>
 
-          <input
-            type="text"
-            name="email"
-            class="form-control mb-2"
-            placeholder="E-mail"
-          />
+          <label class="label-input" for="">
+            <i class="far fa-envelope icon-modify"></i>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              placeholder="E-mail"
+              formControlName="email"
+              [ngClass]="{
+                'is-invalid': submitted && f.email.errors
+              }"
+            />
+          </label>
+          <div
+          *ngIf="submitted && f.email.errors"
+          class="error-input-form"
+        >
+          <div *ngIf="f.email.errors.required">
+            Este e-mail não é válido.
+          </div>
+        </div>
 
-          <input
-            type="text"
-            name="firstname"
-            class="form-control mb-2"
-            placeholder="Nome"
-          />
+          <label class="label-input" for="">
+            <i class="far fa-user icon-modify"></i>
+            <input
+              type="text"
+              name="firstName"
+              class="form-control"
+              placeholder="Nome"
+              formControlName="firstName"
+            />
+          </label>
 
-          <input
-            type="text"
-            name="lastName"
-            class="form-control mb-2"
-            placeholder="Sobrenome"
-          />
+          <label class="label-input" for="">
+            <i class="far fa-user icon-modify"></i>
+            <input
+              type="text"
+              name="lastName"
+              class="form-control"
+              placeholder="Sobrenome"
+              formControlName="lastName"
+            />
+          </label>
 
-          <input
-            type="text"
-            name="password"
-            class="form-control mb-2"
-            placeholder="Senha"
-          />
+          <label class="label-input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Senha"
+              formControlName="password"
+            />
+          </label>
 
-          <input
-            type="text"
-            name="confirmPassword"
-            class="form-control mb-2"
-            placeholder="Confirmar Senha"
-          />
-          <button class="btn btn-second">cadastrar</button>
+          <label class="label-input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input
+              type="password"
+              name="confirmPassword"
+              class="form-control"
+              placeholder="Confirmar Senha"
+              formControlName="confirmPassword"
+            />
+          </label>
+          <button class="btn btn-second" [disabled]="!registerForm.valid" type="submit">cadastrar</button>
         </form>
       </div>
       <!-- second column -->

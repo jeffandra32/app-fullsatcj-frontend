@@ -2,9 +2,11 @@ import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, retry, tap } from 'rxjs/operators';
 
-import { CredenciaisDTO } from './../interfaces/credenciais.dto';
+import { CredenciaisDTO } from './../interfaces/credenciais';
 import { HandleError } from './../util/handle-error';
 import { Injectable } from '@angular/core';
+import { NewUserDTO } from './../interfaces/new-user';
+import { UserDTO } from './../interfaces/user';
 import { environment } from '../../../environments/environment';
 
 const pathUpdatePassword = '/process-api/identity/users';
@@ -18,8 +20,10 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   private pathUpdatePassword: string;
-  private pathEndpoint: string;
-  private readonly _pathEndpoint = '/login';
+  private pathEndpointLogin: string;
+  private pathEndpointRegister: string;
+  private readonly _pathEndpointLogin = '/login';
+  private readonly _pathEndpointRegister = '/register';
 
   /**
    * Creates an instance of AuthenticationService.
@@ -27,7 +31,8 @@ export class AuthenticationService {
    * @memberof AuthenticationService
    */
   constructor(private http: HttpClient) {
-    this.pathEndpoint = `${environment.hosts.local}${this._pathEndpoint}`;
+    this.pathEndpointLogin = `${environment.hosts.local}${this._pathEndpointLogin}`;
+    this.pathEndpointRegister = `${environment.hosts.local}${this._pathEndpointRegister}`;
 
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('currentUser'))
@@ -45,18 +50,34 @@ export class AuthenticationService {
    * @returns {Observable<any>}
    * @memberof AuthenticationService
    */
-  login(creds: CredenciaisDTO): Observable<CredenciaisDTO> {
+  login(creds: CredenciaisDTO): Observable<UserDTO> {
     return this.http
-      .post<CredenciaisDTO>(this.pathEndpoint, creds, {
+      .post<UserDTO>(this.pathEndpointLogin, creds, {
         headers: this.baseHttpHeader,
       })
       .pipe(
         retry(1),
         tap(res => {
-          console.log(res);
-          
-          //localStorage.setItem('token', JSON.stringify(res));
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('currentUser', JSON.stringify(res.user[0]));
         }),
+        catchError(HandleError.handleError)
+      );
+  }
+
+  /**
+   * Registrar novo Usuário.
+   * @param {NewUserDTO} creds
+   * @returns {Observable<NewUserDTO>}
+   * @memberof AuthenticationService
+   */
+  register(userInfo: NewUserDTO): Observable<NewUserDTO> {
+    return this.http
+      .post<NewUserDTO>(this.pathEndpointRegister, userInfo, {
+        headers: this.baseHttpHeader,
+      })
+      .pipe(
+        retry(1),
         catchError(HandleError.handleError)
       );
   }
@@ -67,6 +88,7 @@ export class AuthenticationService {
    */
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     this.currentUserSubject.next(null);
     this.http.get<any>(`${this.baseURL}/app/logout`).subscribe();
   }
@@ -78,20 +100,5 @@ export class AuthenticationService {
    */
   getAuthUser(): Observable<any> {
     return this.http.get<any>(`${this.baseURL}/app/login`);
-  }
-
-  /**
-   * Atualizar a senha do usuário
-   * @param {string} userId
-   * @param {string} password
-   * @returns {Observable<any>}
-   * @memberof AuthenticationService
-   */
-  updatePassword(userId: string, password: string): Observable<any> {
-    const endpoint = `${this.pathUpdatePassword}/${userId}`;
-
-    return this.http
-      .put(endpoint, password, { headers: this.baseHttpHeader })
-      .pipe(retry(1), catchError(HandleError.handleError));
   }
 }

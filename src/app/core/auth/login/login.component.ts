@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/core/services/auth.service';
-import { CredenciaisDTO } from './../../interfaces/credenciais.dto';
+import { CredenciaisDTO } from './../../interfaces/credenciais';
 import { ToastrMessage } from 'src/app/core/enums/toastr';
 import { ToastrService } from 'ngx-toastr';
 
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
    * @returns
    * @memberof LoginComponent
    */
-  onSubmit() {
+  onLogin() {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -76,9 +76,6 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-
-    console.log(this.creds, 'creds');
-    
 
     this.loadingLogin = true;
     this.authenticationService.login(this.creds).subscribe(

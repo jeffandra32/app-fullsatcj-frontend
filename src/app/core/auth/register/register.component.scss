@@ -4,6 +4,13 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+img {
+  width: 180px;
+  margin-bottom: 25px;
+}
+
+
+
 .content {
   background-color: #fff;
   border-radius: 15px;
@@ -42,6 +49,16 @@ body {
 .title-second {
   color: #e9c70a;
 }
+
+.error-input-form {
+  border-left: 3px solid red;
+  border-spacing: 5px;
+  font-size: 12px;
+  color: red;
+  padding-left: 5px;
+  margin: 5px;
+}
+
 .description {
   font-size: 14px;
   font-weight: 300;
@@ -155,8 +172,10 @@ input:-webkit-autofill {
   background-color: #ecf0f1;
   display: flex;
   align-items: center;
-  margin: 8px;
+  border-radius: 8px;
 }
+
+
 .icon-modify {
   color: #7f8c8d;
   padding: 0 5px;

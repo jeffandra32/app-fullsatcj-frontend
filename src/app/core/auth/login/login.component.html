@@ -10,18 +10,19 @@
         <p class="description description-primary">
           Venha fazer parte da nossa comunidade.
         </p>
-        <button id="signin" class="btn btn-primary">
+        <button id="signin" class="btn btn-primary" [routerLink]="['/auth/register']">
           Registrar
         </button>
       </div>
       <div class="second-column m-2">
-        <h5 class="title-register mb-3">Login</h5>
+         <img src="./../../../../assets/img/logo (3).png" alt="logo-full-stack-guide">
+        
         <!-- social media -->
-        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <label class="label-input" for="">
             <i class="far fa-envelope icon-modify"></i>
             <input
-              type="text"
+              type="email"
               name="email"
               class="form-control"
               placeholder="E-mail"
@@ -43,20 +44,6 @@
           <button class="btn btn-second" type="submit">Logar</button>
         </form>
       </div>
-      <!-- second column -->
-    </div>
-    <!-- first content -->
-    <div class="content second-content">
-      <div class="first-column">
-        <h2 class="title title-primary">Fala Dev!</h2>
-        <p class="description description-primary">
-          Entrar com dados de autenticação.
-        </p>
-        <p class="description description-primary">e se junte a nós.</p>
-        <button id="signup" class="btn btn-primary">Login</button>
-      </div>
-
-      <!-- second column -->
     </div>
     <!-- second-content -->
   </div>
