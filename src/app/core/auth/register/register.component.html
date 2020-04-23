@@ -1,0 +1,105 @@
+<p>register works!</p>
+<div class="header py-7 py-lg-8">
+  <div class="separator separator-bottom separator-skew zindex-100"></div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="content first-content">
+      <div class="first-column">
+        <h2 class="title title-primary">Bem vindo de volta!</h2>
+        <p class="description description-primary">Para continuar conectado</p>
+        <p class="description description-primary">
+          por favor entre com seus dados de autentiação.
+        </p>
+        <button id="signin" class="btn btn-primary">
+          sign in
+        </button>
+      </div>
+      <div class="second-column m-2">
+        <h5 class="title-register mt-3 mb-3">Não tem uma conta?</h5>
+        <!-- social media -->
+        <form class="form" [formGroup]="loginForm">
+          <input
+            type="text"
+            name="username"
+            class="form-control mb-2"
+            placeholder="Usuário"
+          />
+
+          <input
+            type="text"
+            name="email"
+            class="form-control mb-2"
+            placeholder="E-mail"
+          />
+
+          <input
+            type="text"
+            name="firstname"
+            class="form-control mb-2"
+            placeholder="Nome"
+          />
+
+          <input
+            type="text"
+            name="lastName"
+            class="form-control mb-2"
+            placeholder="Sobrenome"
+          />
+
+          <input
+            type="text"
+            name="password"
+            class="form-control mb-2"
+            placeholder="Senha"
+          />
+
+          <input
+            type="text"
+            name="confirmPassword"
+            class="form-control mb-2"
+            placeholder="Confirmar Senha"
+          />
+          <button class="btn btn-second">cadastrar</button>
+        </form>
+      </div>
+      <!-- second column -->
+    </div>
+    <!-- first content -->
+    <div class="content second-content">
+      <div class="first-column">
+        <h2 class="title title-primary">Fala Dev!</h2>
+        <p class="description description-primary">
+          Entrar com dados de autenticação.
+        </p>
+        <p class="description description-primary">e se junte a nós.</p>
+        <button id="signup" class="btn btn-primary">Login</button>
+      </div>
+      <div class="second-column">
+        <h2 class="title title-second">sign in to developer</h2>
+
+        <!-- social media -->
+        <p class="description description-second">or use your email account:</p>
+        <form class="form">
+          <label class="label-input" for="">
+            <i class="far fa-envelope icon-modify"></i>
+            <input type="email" placeholder="Email" />
+          </label>
+
+          <label class="label-input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input type="password" placeholder="Password" />
+          </label>
+
+          <a class="password" href="#">forgot your password?</a>
+          <button class="btn btn-second">
+            sign in
+          </button>
+        </form>
+      </div>
+      <!-- second column -->
+    </div>
+    <!-- second-content -->
+  </div>
+</div>

@@ -1,3 +1,13 @@
 export const environment = {
-  production: true
+  production: true,
+  toastConfig: {
+    positionClass: 'toast-top-right',
+    preventDuplicates: true,
+    enableHtml: true,
+    progressBar: true,
+    timeOut: 3000,
+  },
+  hosts: {
+    local: 'localhost',
+  },
 };
