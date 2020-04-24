@@ -7,7 +7,10 @@
     <div class="content first-content">
       <div class="first-column">
         <h2 class="title title-primary">Bem vindo de volta!</h2>
-        <p class="description description-primary">Já possui uma conta?</p>
+        <span class="description description-primary"
+          >Já possui uma conta?</span
+        >
+        <br />
         <span class="description description-primary">
           Por favor entre com seus dados de autentiação.
         </span>
@@ -16,11 +19,14 @@
           class="btn btn-primary"
           [routerLink]="['/auth/login']"
         >
-          sign in
+          Login
         </button>
       </div>
       <div class="second-column m-2">
-        <img src="./../../../../assets/img/logo (3).png" alt="logo-full-stack-guide">
+        <img
+          src="./../../../../assets/img/logo (3).png"
+          alt="logo-full-stack-guide"
+        />
 
         <!-- social media -->
         <form class="form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
@@ -49,14 +55,11 @@
               }"
             />
           </label>
-          <div
-          *ngIf="submitted && f.email.errors"
-          class="error-input-form"
-        >
-          <div *ngIf="f.email.errors.required">
-            Este e-mail não é válido.
+          <div *ngIf="submitted && f.email.errors" class="error-input-form">
+            <div *ngIf="f.email.errors.required">
+              Este e-mail não é válido.
+            </div>
           </div>
-        </div>
 
           <label class="label-input" for="">
             <i class="far fa-user icon-modify"></i>
@@ -101,7 +104,14 @@
               formControlName="confirmPassword"
             />
           </label>
-          <button class="btn btn-second" [disabled]="!registerForm.valid" type="submit">cadastrar</button>
+          <button
+            class="btn btn-second"
+            [disabled]="!registerForm.valid"
+            type="submit"
+          >
+            <app-loading [loadingLogin]="loadingLogin"></app-loading>
+            cadastrar
+          </button>
         </form>
       </div>
       <!-- second column -->

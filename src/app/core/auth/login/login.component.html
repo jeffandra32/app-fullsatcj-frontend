@@ -7,16 +7,23 @@
     <div class="content first-content">
       <div class="first-column">
         <h2 class="title title-primary">Não tem uma conta?</h2>
-        <p class="description description-primary">
+        <span class="description description-primary">
           Venha fazer parte da nossa comunidade.
-        </p>
-        <button id="signin" class="btn btn-primary" [routerLink]="['/auth/register']">
+        </span>
+        <button
+          id="signin"
+          class="btn btn-primary"
+          [routerLink]="['/auth/register']"
+        >
           Registrar
         </button>
       </div>
       <div class="second-column m-2">
-         <img src="./../../../../assets/img/logo (3).png" alt="logo-full-stack-guide">
-        
+        <img
+          src="./../../../../assets/img/logo (3).png"
+          alt="logo-full-stack-guide"
+        />
+
         <!-- social media -->
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <label class="label-input" for="">
@@ -40,8 +47,13 @@
               formControlName="password"
             />
           </label>
-          <a class="password" href="#">esqueceu a senha?</a>
-          <button class="btn btn-second" type="submit">Logar</button>
+          <a class="password" [routerLink]="['/auth/forgot-password']"
+            >esqueceu a senha?</a
+          >
+          <button class="btn btn-second" type="submit">
+            <app-loading [loadingLogin]="loadingLogin"></app-loading>
+            Logar
+          </button>
         </form>
       </div>
     </div>

@@ -1,15 +1,14 @@
-import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, retry, tap } from 'rxjs/operators';
 
 import { CredenciaisDTO } from './../interfaces/credenciais';
 import { HandleError } from './../util/handle-error';
 import { Injectable } from '@angular/core';
 import { NewUserDTO } from './../interfaces/new-user';
+import { ResetPasswordDTO } from './../interfaces/reset-password';
 import { UserDTO } from './../interfaces/user';
 import { environment } from '../../../environments/environment';
-
-const pathUpdatePassword = '/process-api/identity/users';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +18,14 @@ export class AuthenticationService {
   private baseURL: any;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
-  private pathUpdatePassword: string;
   private pathEndpointLogin: string;
   private pathEndpointRegister: string;
+  private pathEndpointForgot: string;
+  private pathEndpointReset: string;
   private readonly _pathEndpointLogin = '/login';
   private readonly _pathEndpointRegister = '/register';
+  private readonly _pathEndpointForgot = '/forgot';
+  private readonly _pathEndpointReset = '/reset';
 
   /**
    * Creates an instance of AuthenticationService.
@@ -33,6 +35,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
     this.pathEndpointLogin = `${environment.hosts.local}${this._pathEndpointLogin}`;
     this.pathEndpointRegister = `${environment.hosts.local}${this._pathEndpointRegister}`;
+    this.pathEndpointForgot = `${environment.hosts.local}${this._pathEndpointForgot}`;
+    this.pathEndpointReset = `${environment.hosts.local}${this._pathEndpointReset}`;
 
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('currentUser'))
@@ -57,7 +61,7 @@ export class AuthenticationService {
       })
       .pipe(
         retry(1),
-        tap(res => {
+        tap((res) => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('currentUser', JSON.stringify(res.user[0]));
         }),
@@ -74,6 +78,37 @@ export class AuthenticationService {
   register(userInfo: NewUserDTO): Observable<NewUserDTO> {
     return this.http
       .post<NewUserDTO>(this.pathEndpointRegister, userInfo, {
+        headers: this.baseHttpHeader,
+      })
+      .pipe(retry(1), catchError(HandleError.handleError));
+  }
+
+  /**
+   * Envia um e-mail para recuperação de senha.
+   * @param {string} email
+   * @returns {Observable<any>}
+   * @memberof AuthenticationService
+   */
+  forgot(email: string): Observable<any> {
+    const data = {
+      email,
+    };
+    return this.http
+      .post<any>(this.pathEndpointForgot, data, {
+        headers: this.baseHttpHeader,
+      })
+      .pipe(retry(1), catchError(HandleError.handleError));
+  }
+
+  /**
+   * Reseta a senha do usuário por e-mail.
+   * @param {ResetPasswordDTO} creds
+   * @returns {Observable<any>}
+   * @memberof AuthenticationService
+   */
+  resetPassword(creds: ResetPasswordDTO): Observable<any> {
+    return this.http
+      .post<any>(this.pathEndpointReset, creds, {
         headers: this.baseHttpHeader,
       })
       .pipe(
