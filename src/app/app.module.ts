@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './core/components/components.module';
 import { FormsModule } from '@angular/forms';
+import { HomeModule } from './pages/home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
@@ -28,6 +29,7 @@ registerLocaleData(localePt);
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(environment.toastConfig),
+    HomeModule,
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],

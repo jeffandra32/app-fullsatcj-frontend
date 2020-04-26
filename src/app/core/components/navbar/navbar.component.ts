@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
    */
   private getUser() {
     const userInfor = JSON.parse(localStorage.getItem('currentUser'));
-    this.user = userInfor.noUsuario;
+    this.user = userInfor.firstName;
   }
 
   /**

@@ -12,82 +12,19 @@
     <!-- Brand -->
     <a class="navbar-brand pt-0" routerLinkActive="active">
       <img
-        src="../../../../assets/img/logo_home (2).png"
+        src="../../../../assets/img/logo (3).png"
         class="navbar-brand-img"
         alt="..."
       />
     </a>
-    <!-- User
-    <ul class="nav align-items-center d-md-none">
-      <li class="nav-item" ngbDropdown placement="bottom-right">
-        <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
-          <i class="ni ni-bell-55"></i>
-        </a>
-        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-          <a class="dropdown-item" href="javascript:void(0)">Action</a>
-          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:void(0)"
-            >Something else here</a
-          >
-        </div>
-      </li>
-      <li class="nav-item" ngbDropdown placement="bottom-right">
-        <a class="nav-link" role="button" ngbDropdownToggle>
-          <div class="media align-items-center">
-            <span class="avatar avatar-sm rounded-circle">
-              <img
-                alt="Image placeholder"
-                src="./assets/img/theme/team-1-800x800.jpg"
-              />
-            </span>
-          </div>
-        </a>
-        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-          <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
-          </div>
-          <a
-            routerLinkActive="active"
-            [routerLink]="['/user-profile']"
-            class="dropdown-item"
-          >
-            <i class="ni ni-single-02"></i>
-            <span>My profile</span>
-          </a>
-          <a
-            routerLinkActive="active"
-            [routerLink]="['/user-profile']"
-            class="dropdown-item"
-          >
-            <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
-          </a>
-          <a
-            routerLinkActive="active"
-            [routerLink]="['/user-profile']"
-            class="dropdown-item"
-          >
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
-          </a>
-          <a
-            routerLinkActive="active"
-            [routerLink]="['/user-profile']"
-            class="dropdown-item"
-          >
-            <i class="ni ni-support-16"></i>
-            <span>Support</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
-            <i class="ni ni-user-run"></i>
-            <span>Logout</span>
-          </a>
-        </div>
-      </li>
-    </ul> -->
-    <!-- Collapse -->
+
+    <div>
+      <img class="profile" src="../../../../assets/img/pp.jpg" alt="" />
+      <div class="info-profile">
+        {{ user }}
+      </div>
+    </div>
+
     <div
       class="collapse navbar-collapse"
       [ngbCollapse]="isCollapsed"
@@ -143,14 +80,13 @@
             <i class="ni {{ menuItem.icon }}"></i>
             {{ menuItem.title }}
           </a>
-          <hr class="my-2" />
         </li>
       </ul>
       <br />
       <!-- Divider -->
 
       <!-- Heading -->
-      <h6 class="navbar-heading text-muted">Documentação</h6>
+      <h6 class="navbar-heading text-muted">Stacks</h6>
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
@@ -159,7 +95,38 @@
             href="https://homeoffice.indrabrasil.com.br/doc/manual/index.html"
             target="_blanck"
           >
-            <i class="ni ni-books text-red"></i> Manual de Instruções
+            <i class="fab fa-foursquare"></i>
+            FrontEnd
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://homeoffice.indrabrasil.com.br/doc/manual/index.html"
+            target="_blanck"
+          >
+            <i class="fas fa-cogs"></i>
+            BackEnd
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://homeoffice.indrabrasil.com.br/doc/manual/index.html"
+            target="_blanck"
+          >
+            <i class="fas fa-infinity"></i>
+            Devops
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://homeoffice.indrabrasil.com.br/doc/manual/index.html"
+            target="_blanck"
+          >
+            <i class="fas fa-database"></i>
+            Banco de Dados
           </a>
         </li>
       </ul>

@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
           timeOut: 1500,
         });
 
-        //this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl]);
       },
       (error: { status: number }) => {
         if (error.status === 401) {

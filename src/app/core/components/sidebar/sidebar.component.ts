@@ -10,23 +10,23 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
-    path: 'dashboard',
-    title: 'Dashboard',
-    icon: 'ni-tv-2 text-success',
+    path: 'home',
+    title: 'Início',
+    icon: 'ni-shop text-success',
     class: '',
   },
-  {
-    path: 'objectives-register',
-    title: 'Cadastro de Objetivos',
-    icon: 'ni-settings-gear-65 text-blue',
-    class: '',
-  },
-  {
-    path: 'objectives',
-    title: 'Lista de Objetivos',
-    icon: 'ni-bullet-list-67 text-yellow',
-    class: '',
-  },
+  // {
+  //   path: 'objectives-register',
+  //   title: 'Cadastro de Objetivos',
+  //   icon: 'ni-settings-gear-65 text-blue',
+  //   class: '',
+  // },
+  // {
+  //   path: 'objectives',
+  //   title: 'Lista de Objetivos',
+  //   icon: 'ni-bullet-list-67 text-yellow',
+  //   class: '',
+  // },
 ];
 
 @Component({
@@ -37,6 +37,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
+  user: string;
 
   /**
    * Creates an instance of SidebarComponent.
@@ -50,5 +51,11 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.isCollapsed = true;
     });
+    this.getUser();
+  }
+
+  private getUser() {
+    const userInfor = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = `${userInfor.firstName} ${userInfor.lastName}`;
   }
 }

@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  
   {
     path: 'admin',
     component: AdminLayoutComponent,
