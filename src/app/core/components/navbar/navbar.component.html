@@ -6,11 +6,24 @@
       routerLinkActive="active"
       [routerLink]="['/dashboard']"
     ></a>
+    <div class="input-group input-group-alternative">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+      <input
+        class="form-control"
+        placeholder="Procurar..."
+        type="text"
+        id="listSearch"
+      />
+    </div>
     <!-- Form -->
 
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
-     
+     <li>
+      <i class="fas fa-bell"></i>
+     </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">

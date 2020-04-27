@@ -1,0 +1,16 @@
+
+.bg-gradient-default {
+  background: #fff !important;
+}
+
+.fixed {
+  position: fixed;
+  width: 25%;
+}
+
+.truncate {
+  white-space: nowrap!important;
+  overflow: hidden!important;
+  text-overflow: ellipsis!important;
+  font-size: 14px;
+}

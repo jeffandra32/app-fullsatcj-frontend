@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: 'home',
     title: 'Início',
-    icon: 'ni-shop text-success',
+    icon: 'ni-app text-success',
     class: '',
   },
   // {
@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
   user: string;
+  avatar: string;
 
   /**
    * Creates an instance of SidebarComponent.
@@ -56,6 +57,7 @@ export class SidebarComponent implements OnInit {
 
   private getUser() {
     const userInfor = JSON.parse(localStorage.getItem('currentUser'));
+    this.avatar = userInfor.avatar_url;
     this.user = `${userInfor.firstName} ${userInfor.lastName}`;
   }
 }
