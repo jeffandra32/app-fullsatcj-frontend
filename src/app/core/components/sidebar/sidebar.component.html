@@ -19,10 +19,27 @@
     </a>
 
     <div>
-      <img class="profile" src="{{avatar}}" alt="" />
+      <img
+        *ngIf="avatar; else noavatar"
+        alt="Image placeholder"
+        src="{{ avatarUrl }}"
+        class="profile"
+      />
+      <ng-template #noavatar>
+        <img
+          class="profile"
+          alt="Image placeholder"
+          src="../../../../assets/img/default-avatar.jpg"
+        />
+      </ng-template>
       <div class="info-profile">
         {{ user }}
       </div>
+      <div style="text-align: center;">
+      <button class="btn mt-1" style="color: green; font-size: 14px;">
+        Visualizar Perfil
+      </button>
+    </div>
     </div>
 
     <div

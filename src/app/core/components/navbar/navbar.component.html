@@ -21,20 +21,27 @@
 
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
-     <li>
-      <i class="fas fa-bell"></i>
-     </li>
+      <li>
+        <i class="fas fa-bell"></i>
+      </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
               <img
+                *ngIf="avatar; else noavatar"
                 alt="Image placeholder"
-                src="../../../../assets/img/pp.jpg"
+                src="{{ avatarUrl }}"
               />
+              <ng-template #noavatar>
+                <img
+                  alt="Image placeholder"
+                  src="../../../../assets/img/default-avatar.jpg"
+                />
+              </ng-template>
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <i class="fas fa-sort-down"></i>
+              <i class="fas fa-sort-down" style="cursor: pointer;"></i>
             </div>
           </div>
         </a>

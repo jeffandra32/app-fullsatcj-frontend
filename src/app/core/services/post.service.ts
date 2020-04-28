@@ -10,12 +10,12 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class PostService {
   baseHttpHeader: HttpHeaders;
   baseURL: string;
   pathEndpoint: string;
   pathEndpoint2: string;
-  private readonly _pathEndpoint = '/usuario/listarUsuario';
+  private readonly _pathEndpointListar = '/posts';
   private readonly _pathEndpoint2 = 'usuario/listarGestor';
 
   /**
@@ -24,22 +24,21 @@ export class UserService {
    * @memberof ProcessService
    */
   constructor(private http: HttpClient) {
-    this.pathEndpoint = `${environment.hosts.local}${this._pathEndpoint}`;
+    this.pathEndpoint = `${environment.hosts.local}${this._pathEndpointListar}`;
     this.pathEndpoint2 = `${environment.hosts.local}${this._pathEndpoint2}`;
     this.baseHttpHeader = AppConstants._baseHttpOptions;
   }
 
+ 
   /**
-   * Retorna todas os processos
+   * Retorna todas os posts
    * @returns {Observable<any>}
-   * @memberof ProcessService
+   * @memberof PostService
    */
-  getAll(gestorId: string): Observable<any> {
-    const getParams = new HttpParams().set('id', gestorId);
+  getAll(): Observable<any> {
     return this.http
       .get<any>(this.pathEndpoint, {
-        headers: this.baseHttpHeader,
-        params: getParams,
+        headers: this.baseHttpHeader
       })
       .pipe(retry(1), catchError(HandleError.handleError));
   }

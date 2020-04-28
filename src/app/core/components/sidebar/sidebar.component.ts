@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
   user: string;
   avatar: string;
+  avatarUrl: string
 
   /**
    * Creates an instance of SidebarComponent.
@@ -57,7 +58,8 @@ export class SidebarComponent implements OnInit {
 
   private getUser() {
     const userInfor = JSON.parse(localStorage.getItem('currentUser'));
-    this.avatar = userInfor.avatar_url;
+    this.avatar = userInfor.avatar;
+    this.avatarUrl = userInfor.avatar_url;
     this.user = `${userInfor.firstName} ${userInfor.lastName}`;
   }
 }

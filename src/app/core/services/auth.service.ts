@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { catchError, retry, tap } from 'rxjs/operators';
 
 import { CredenciaisDTO } from './../interfaces/credenciais';
@@ -15,6 +15,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthenticationService {
   baseHttpHeader: HttpHeaders;
+  cachedRequests: Array<HttpRequest<any>> = [];
   private baseURL: any;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
@@ -27,6 +28,7 @@ export class AuthenticationService {
   private readonly _pathEndpointForgot = '/forgot';
   private readonly _pathEndpointReset = '/reset';
 
+
   /**
    * Creates an instance of AuthenticationService.
    * @param {HttpClient} http
@@ -37,15 +39,10 @@ export class AuthenticationService {
     this.pathEndpointRegister = `${environment.hosts.local}${this._pathEndpointRegister}`;
     this.pathEndpointForgot = `${environment.hosts.local}${this._pathEndpointForgot}`;
     this.pathEndpointReset = `${environment.hosts.local}${this._pathEndpointReset}`;
-
-    this.currentUserSubject = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('currentUser'))
-    );
-    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): any {
-    return this.currentUserSubject.value;
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   /**
@@ -111,10 +108,7 @@ export class AuthenticationService {
       .post<any>(this.pathEndpointReset, creds, {
         headers: this.baseHttpHeader,
       })
-      .pipe(
-        retry(1),
-        catchError(HandleError.handleError)
-      );
+      .pipe(retry(1), catchError(HandleError.handleError));
   }
 
   /**

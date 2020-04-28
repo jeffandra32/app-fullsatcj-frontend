@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   userPictureOnly = false;
-  user: any;
+  avatar: string;
+  avatarUrl: string;
   public focus: any;
   public listTitles: any[];
   public location: Location;
@@ -32,7 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.listTitles = ROUTES.filter((listTitle) => listTitle);
     this.getUser();
   }
 
@@ -43,7 +44,8 @@ export class NavbarComponent implements OnInit {
    */
   private getUser() {
     const userInfor = JSON.parse(localStorage.getItem('currentUser'));
-    this.user = userInfor.firstName;
+    this.avatar = userInfor.avatar;
+    this.avatarUrl = userInfor.avatar_url;
   }
 
   /**
@@ -58,6 +60,7 @@ export class NavbarComponent implements OnInit {
       titlee = titlee.slice(8);
     }
 
+    // tslint:disable-next-line: prefer-for-of
     for (let item = 0; item < this.listTitles.length; item++) {
       if (this.listTitles[item].path === titlee) {
         return this.listTitles[item].title;
@@ -71,7 +74,6 @@ export class NavbarComponent implements OnInit {
    * @memberof NavbarComponent
    */
   logOut(): void {
-    this.user = null;
     this.authenticationService.logout();
     this.router.navigate(['/']);
   }
