@@ -1,4 +1,4 @@
 export interface UserDTO {
-  token: string;
+  token?: string;
   user: object;
 }

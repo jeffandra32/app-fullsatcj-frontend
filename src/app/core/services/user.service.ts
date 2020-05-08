@@ -5,6 +5,7 @@ import { AppConstants } from '../constants/shared.constants';
 import { HandleError } from './../util/handle-error';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserProfileDTO } from '../interfaces/user-profile';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -13,10 +14,8 @@ import { environment } from '../../../environments/environment';
 export class UserService {
   baseHttpHeader: HttpHeaders;
   baseURL: string;
-  pathEndpoint: string;
-  pathEndpoint2: string;
-  private readonly _pathEndpoint = '/usuario/listarUsuario';
-  private readonly _pathEndpoint2 = 'usuario/listarGestor';
+  pathEndpointUserById: string;
+  private readonly _pathEndpoint = '/users/';
 
   /**
    * Creates an instance of ProcessService.
@@ -24,38 +23,25 @@ export class UserService {
    * @memberof ProcessService
    */
   constructor(private http: HttpClient) {
-    this.pathEndpoint = `${environment.hosts.local}${this._pathEndpoint}`;
-    this.pathEndpoint2 = `${environment.hosts.local}${this._pathEndpoint2}`;
+    this.pathEndpointUserById = `${environment.hosts.local}${this._pathEndpoint}`;
     this.baseHttpHeader = AppConstants._baseHttpOptions;
   }
 
+ 
   /**
-   * Retorna todas os processos
+   * Retorna informações do usuário pelo {id}
+   * @param {string} userId
    * @returns {Observable<any>}
-   * @memberof ProcessService
+   * @memberof UserService
    */
-  getAll(gestorId: string): Observable<any> {
-    const getParams = new HttpParams().set('id', gestorId);
+  getUserById(userId: string): Observable<UserProfileDTO> {
+    const getParams = new HttpParams().set('id', userId);
     return this.http
-      .get<any>(this.pathEndpoint, {
+      .get<UserProfileDTO>(this.pathEndpointUserById, {
         headers: this.baseHttpHeader,
         params: getParams,
       })
       .pipe(retry(1), catchError(HandleError.handleError));
   }
 
-  /**
-   * Retorna uma lista de Gestores.
-   * @param {string} gestorId
-   * @returns {Observable<any>}
-   * @memberof UserService
-   */
-  getAllManager(gestorId: string): Observable<any> {
-    const endpoint = `${this.pathEndpoint2}/${gestorId}`;
-    return this.http
-      .get<any>(endpoint, {
-        headers: this.baseHttpHeader,
-      })
-      .pipe(retry(1), catchError(HandleError.handleError));
-  }
 }

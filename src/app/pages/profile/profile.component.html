@@ -1,1 +1,92 @@
-<p>profile works!</p>
+<div class="header bg-gradient-danger pb-8 pt-2 pt-md-5"></div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-3 mb-xl-0">
+      <div class="card bg-gradient-default shadow">
+        <div class="row">
+          <div class="col-md-2">
+            <div *ngIf="avatar; else noAvatar">
+              <img
+                class="profile"
+                src="{{ userInfo.avatar_url }}"
+                alt="Meu avatar"
+              />
+            </div>
+            <ng-template #noAvatar>
+              <img
+                class="profile"
+                src="../../../../../assets/img/default-avatar.jpg"
+                alt=""
+              />
+            </ng-template>
+
+            <div class="profile-background-image__image-container">
+              <img
+                class="profile-background-image__image-container"
+                src="../../../assets/img/dark-material-bg.png"
+                alt="title-image"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row m-3">
+          <div class="col-md-12" align="center">
+            <span style="font-weight: bold; font-size: 20px;"
+              >{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span
+            ><br />
+            <div *ngIf="title; else isTitle">
+              <span style="font-size: 18px; color: gray;">{{
+                userInfo?.title
+              }}</span>
+            </div>
+            <ng-template #isTitle>
+              O usuário está sem um título.
+            </ng-template>
+
+            <hr />
+          </div>
+          <div class="col-md-12">
+            <div class="container">
+              <i class="fab fa-linkedin"></i>
+              <div *ngIf="linkedin; else noLinkedin">
+                <a href="">{{ userInfo?.linkedin }}</a>
+              </div>
+              <ng-template #noLinkedin>
+                <span class="info-perfil"
+                  >Edite seu perfil para adicionar o linkedin.</span
+                >
+              </ng-template>
+
+              <br />
+              <i class="fab fa-github-square"></i>
+              <div *ngIf="linkedin; else noGithub">
+                <a href="">{{ userInfo?.github }}</a>
+              </div>
+              <ng-template #noGithub>
+                <span class="info-perfil">
+                  Edite seu perfil para adicionar o gitHub.</span
+                >
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row justify-content-center">
+          <div class="card-title">
+            Sobre
+          </div>
+          <div *ngIf="bio; else noBio">
+            <p style="text-align: justify; font-size: 14px;">
+              {{ userInfo?.bio }}
+            </p>
+          </div>
+          <ng-template #noBio>
+            <span style="text-align: center;">
+              Insira aqui um breve comentário sobre sua biográfia.</span
+            >
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -118,7 +118,6 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-    this.currentUserSubject.next(null);
     this.http.get<any>(`${this.baseURL}/app/logout`).subscribe();
   }
 
