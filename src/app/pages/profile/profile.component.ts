@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { pipe, throwError } from 'rxjs';
 
 import { UserDTO } from '../../core/interfaces/user';
@@ -19,13 +20,18 @@ export class ProfileComponent implements OnInit {
   linkedin: string;
   bio: string;
   userInfo: UserProfileDTO;
+  modalRef: BsModalRef;
+  @ViewChild('edite_perfil', { static: true }) template: TemplateRef<any>;
 
   /**
    * Creates an instance of ProfileComponent.
    * @param {UserService} userService
    * @memberof ProfileComponent
    */
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit() {
     const userInfor: UserProfileDTO = JSON.parse(
@@ -56,5 +62,14 @@ export class ProfileComponent implements OnInit {
         })
       )
     );
+  }
+
+  /**
+   * Abrir modal para edição de Perfil.
+   * @param {TemplateRef<any>} template
+   * @memberof ProfileComponent
+   */
+  openEditProfile(template: TemplateRef<any>) {
+    this.modalService.show(template);
   }
 }

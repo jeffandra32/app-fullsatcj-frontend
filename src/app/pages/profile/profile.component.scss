@@ -6,7 +6,7 @@ hr {
 }
 
 .profile-background-image__image-container {
-  width: 1012px;
+  min-width: 1012px;
   height: 200px;
   border-radius: 8px;
 }
@@ -23,9 +23,22 @@ hr {
   border-radius: 50%;
   margin-left: 25px;
   margin-top: 120px;
-  border: solid ;
+  border: solid;
   position: absolute;
   z-index: 1;
+}
+
+
+.image-upload > input {
+  display: none;
+}
+
+.image-upload {
+  position: absolute;
+  z-index: 2;
+  margin-left: 120px;
+  margin-top: 220px;
+  color: #ffe031;
 }
 
 .image-post {
@@ -37,7 +50,7 @@ hr {
 
 .like-icon {
   color: black;
-  
+
   .fa-thumbs-up {
     font-size: 16px;
     margin-right: 5px;
@@ -52,7 +65,7 @@ hr {
 
 .comment-icon {
   color: black;
-  
+
   .fa-comments {
     font-size: 16px;
   }
@@ -77,15 +90,24 @@ hr {
 }
 
 .info-perfil {
-  border: 2px dashed rgba(0,0,0,.25);
+  border: 2px dashed rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   width: 100%;
 }
 
 .info-perfil-bio {
-  border: 2px dashed rgba(0,0,0,.25);
+  border: 2px dashed rgba(0, 0, 0, 0.25);
   border-radius: 2px;
-  width: 1020px;
   text-align: center;
+  margin: 5px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1012px;
+  text-align: justify;
 }
 
+.fa-edit {
+  font-size: 25px;
+  color: black;
+  cursor: pointer;
+}

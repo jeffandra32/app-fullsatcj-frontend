@@ -10,7 +10,17 @@
                 class="profile"
                 src="{{ userInfo.avatar_url }}"
                 alt="Meu avatar"
-              />
+              >
+              <div class="image-upload">
+                <label for="file-input">
+                  <i
+                    class="fas fa-camera"
+                    style="font-size: 30px; cursor: pointer;"
+                  ></i>
+                </label>
+    
+                <input id="file-input" type="file" />
+              </div>
             </div>
             <ng-template #noAvatar>
               <img
@@ -42,27 +52,46 @@
             <ng-template #isTitle>
               O usuário está sem um título.
             </ng-template>
-
             <hr />
+          </div>
+          <div class="col-md-12" align="right">
+            <i
+              title="Editar Perfil"
+              class="fas fa-edit"
+              (click)="openEditProfile(edit_profile)"
+            ></i>
           </div>
           <div class="col-md-12">
             <div class="container">
-              <i class="fab fa-linkedin"></i>
-              <div *ngIf="linkedin; else noLinkedin">
-                <a href="">{{ userInfo?.linkedin }}</a>
+              <div class="row">
+                <div class="col-md-10">
+                  <div *ngIf="linkedin; else noLinkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="{{ userInfo?.linkedin }}" target="_blank">{{
+                      userInfo?.linkedin
+                    }}</a>
+                  </div>
+                  <ng-template #noLinkedin>
+                    <i class="fab fa-linkedin"></i>
+                    <span class="info-perfil"
+                      >Edite seu perfil para adicionar o linkedin.</span
+                    >
+                  </ng-template>
+                </div>
               </div>
-              <ng-template #noLinkedin>
-                <span class="info-perfil"
-                  >Edite seu perfil para adicionar o linkedin.</span
-                >
-              </ng-template>
-
               <br />
-              <i class="fab fa-github-square"></i>
-              <div *ngIf="linkedin; else noGithub">
-                <a href="">{{ userInfo?.github }}</a>
+              <div class="row">
+                <div class="col-md-10">
+                  <div *ngIf="linkedin; else noGithub">
+                    <i class="fab fa-github-square"></i>
+                    <a href="{{ userInfo?.github }}" target="_blank">{{
+                      userInfo?.github
+                    }}</a>
+                  </div>
+                </div>
               </div>
               <ng-template #noGithub>
+                <i class="fab fa-github-square"></i>
                 <span class="info-perfil">
                   Edite seu perfil para adicionar o gitHub.</span
                 >
@@ -71,17 +100,17 @@
           </div>
         </div>
         <hr />
-        <div class="row justify-content-center">
-          <div class="card-title">
-            Sobre
-          </div>
-          <div *ngIf="bio; else noBio">
-            <p style="text-align: justify; font-size: 14px;">
-              {{ userInfo?.bio }}
-            </p>
-          </div>
+        <div class="card-title m-3">
+          Sobre
+        </div>
+        <div class="row justify-content-center m-3" *ngIf="bio; else noBio">
+          <p class="info-perfil-bio">
+            {{ userInfo?.bio }}
+          </p>
+        </div>
+        <div class="row">
           <ng-template #noBio>
-            <span style="text-align: center;">
+            <span class="info-perfil-bio">
               Insira aqui um breve comentário sobre sua biográfia.</span
             >
           </ng-template>
@@ -90,3 +119,6 @@
     </div>
   </div>
 </div>
+<ng-template #edit_profile>
+  <app-edit-perfil [userId]="userId"></app-edit-perfil>
+</ng-template>

@@ -15,6 +15,7 @@ textarea {
   max-width: 620px;
   max-height: 250px;
 }
+
 .task-select {
   display: block;
   width: 100%;
@@ -31,13 +32,11 @@ textarea {
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.image-upload > input
-{
-    display: none;
+.image-upload>input {
+  display: none;
 }
 
-.image-upload img
-{
-    width: 80px;
-    cursor: pointer;
+.image-upload img {
+  width: 80px;
+  cursor: pointer;
 }

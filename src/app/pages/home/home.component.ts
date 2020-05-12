@@ -21,14 +21,13 @@ export class HomeComponent implements OnInit {
     this.getAllPosts();
   }
 
+  /**
+   * @todo Inserir método para carregas os posts do usuário e amigos.
+   */
   getAllPosts() {
     this.postService.getAll().subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
+      (res: any) => {},
+      (err) => {}
     );
   }
 
